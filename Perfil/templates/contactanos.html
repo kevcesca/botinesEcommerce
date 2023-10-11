@@ -1,0 +1,22 @@
+{% extends 'padre.html' %}
+
+{% block head %}
+    {% load static %}
+    <meta name="description" content="Contactanos" />
+    <link href="{% static 'css/perfilUsuario.css' %}" rel="stylesheet" />
+    <title>Contactanos</title>
+{% endblock head %}
+
+{% block contenidoQueCambia %}
+<main class="container-fluid main-profile">
+    <h2>Contactanos</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+    </form>
+
+    <a class="nav-link t-black btn-productos w-50 my-5 text-center" aria-current="page" href="{% url 'MensajesContactanos' %}">Mensajes recibidos</a>
+</main>
+{% endblock contenidoQueCambia %}

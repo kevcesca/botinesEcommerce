@@ -1,0 +1,23 @@
+{% extends 'padre.html' %}
+
+{% block head %}
+{% load static %}
+<meta name="description" content="Editar Dirección" />
+<link href="{% static 'css/login.css' %}" rel="stylesheet" />
+<title>Inicia sesión</title>
+{% endblock head %}
+
+{% block contenidoQueCambia %}
+
+<main class="container-fluid d-flex justify-content-center align-items-center flex-column">
+
+    
+        <form class="formulario-editar card d-flex justify-content-center align-items-center flex-column w-50 py-5" action="" method="post">{% csrf_token %} 
+            <h2 class="t-white py-2">Inicia sesión</h2>
+            {{miFormulario.as_p}}
+            <button class="btn btn-productos" type="submit">Iniciar sesión</button>
+        </form>
+
+</main>
+
+{% endblock contenidoQueCambia %}

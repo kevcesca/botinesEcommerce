@@ -1,0 +1,18 @@
+/* Estilos para dispositivos de hasta 767px de ancho */
+@media (max-width: 767px) {
+    table {
+        font-size: 12px; /* Reduce el tamaño de fuente para que quepa en pantallas pequeñas */
+    }
+    th, td {
+        padding: 5px; /* Reduce el espacio entre las celdas */
+    }
+    /* Agrega otros estilos necesarios para dispositivos móviles */
+}
+
+/* Estilos para dispositivos de hasta 576px de ancho (pantallas aún más pequeñas) */
+@media (max-width: 576px) {
+    table {
+        font-size: 10px; /* Reduce aún más el tamaño de fuente */
+    }
+    /* Agrega otros estilos específicos para pantallas aún más pequeñas si es necesario */
+}

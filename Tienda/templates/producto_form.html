@@ -1,0 +1,24 @@
+{% extends 'padre.html' %}
+
+{% block head %}
+    {% load static %}
+    <meta name="description" content="{% if producto %}Editar Producto{% else %}Crear Producto{% endif %}" />
+    <link href="{% static 'css/formProducto.css' %}" rel="stylesheet" />
+    <title>{% if producto %}Editar Producto{% else %}Crear Producto{% endif %}</title>
+{% endblock head %}
+
+{% block contenidoQueCambia %}
+<main class="container-fluid main-profile">
+    <h2>{% if producto %}Editar Producto{% else %}Crear Producto{% endif %}</h2>
+    <img class="image-edit mx-2 my-2" src="{{producto.imagen1.url}}" alt="{{producto.nombre}}">
+    <img class="image-edit mx-2 my-2" src="{{producto.imagen2.url}}" alt="{{producto.nombre}}">
+    <img class="image-edit mx-2 my-2" src="{{producto.imagen3.url}}" alt="{{producto.nombre}}">
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+    <a href="{% url 'ListaProductos' %}" class="btn btn-secondary">Volver a la lista</a>
+</main>
+{% endblock contenidoQueCambia %}

@@ -1,0 +1,16 @@
+.landing-card1{
+    background: linear-gradient(to bottom, #000000, #00000080), url("https://res.cloudinary.com/dpsygq9p6/image/upload/v1696991976/Botines/kids.jpg");
+}
+.landing-card2{
+    background: linear-gradient(to bottom, #000000, #00000080), url("https://res.cloudinary.com/dpsygq9p6/image/upload/v1696991850/Botines/women.jpg");
+}
+.landing-card3{
+    background: linear-gradient(to bottom, #000000, #00000080), url("https://res.cloudinary.com/dpsygq9p6/image/upload/v1696991838/Botines/men.jpg");
+}
+
+
+.landing-card1, .landing-card2, .landing-card3{
+    width: 30vw;
+    height: 45vh;
+    background-size: cover;
+}

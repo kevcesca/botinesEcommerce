@@ -1,0 +1,15 @@
+{% extends 'padre.html' %}
+
+{% block head %}
+    {% load static %}
+    <meta name="description" content="Gracias por tu mensaje" />
+    <link href="{% static 'css/perfilUsuario.css' %}" rel="stylesheet" />
+    <title>Gracias por tu mensaje</title>
+{% endblock head %}
+
+{% block contenidoQueCambia %}
+<main class="container-fluid main-profile">
+    <h2>Gracias por tu mensaje</h2>
+    <p>Hemos recibido tu mensaje y te responderemos pronto.</p>
+</main>
+{% endblock contenidoQueCambia %}

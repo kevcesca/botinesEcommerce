@@ -1,0 +1,20 @@
+{% extends 'padre.html' %}
+{% block head %}
+    {% load static %}
+    <meta name="description" content="" />
+    <link href="{% static 'css/inicio.css' %}" rel="stylesheet" />
+    <title>Lista de productos</title>
+{% endblock head %}
+{% block contenidoQueCambia %}
+<main class="container-fluid main-products">
+    <div class="card landing-card1 t-white d-flex justify-content-center align-items-center">
+        Kids
+    </div>
+    <div class="card landing-card2 t-white d-flex justify-content-center align-items-center">
+        Women
+    </div>
+    <div class="card landing-card3 t-white d-flex justify-content-center align-items-center">
+        Men
+    </div>
+</main>
+{% endblock contenidoQueCambia %}

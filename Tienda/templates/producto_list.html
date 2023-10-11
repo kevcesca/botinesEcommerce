@@ -1,0 +1,56 @@
+{% extends 'padre.html' %}
+
+{% block head %}
+{% load static %}
+<meta name="description" content="Lista de Productos" />
+<link href="{% static 'css/formProducto.css' %}" rel="stylesheet" />
+<title>Lista de Productos</title>
+{% endblock head %}
+
+{% block contenidoQueCambia %}
+<main class="container-fluid main-profile">
+    <h2>Lista de Productos</h2>
+    <a href="{% url 'producto_create' %}" class="btn btn-productos">Crear Producto</a>
+
+    <form method="get" action="{% url 'ListaProductos' %}" class="mt-3">
+        <div class="input-group mb-3">
+            <input type="text" name="q" class="form-control" placeholder="Buscar por nombre o descripción" value="{{ request.GET.q }}">
+            <button class="btn btn-complementario" type="submit">Buscar</button>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Imagenes</th>
+                <th>Acciones</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+            <tr>
+                <td>{{ producto.nombre }}</td>
+                <td class="w-25">{{producto.descripcion}}</td>
+                <td>{{ producto.precio }}</td>
+                <td>
+                    <img class="image-edit mx-2 my-2" src="{{producto.imagen1.url}}" alt="{{producto.nombre}}">
+                    <img class="image-edit mx-2 my-2" src="{{producto.imagen2.url}}" alt="{{producto.nombre}}">
+                    <img class="image-edit mx-2 my-2" src="{{producto.imagen3.url}}" alt="{{producto.nombre}}">
+                </td>
+                <td>
+                    <a href="{% url 'producto_update' producto.pk %}" class="btn btn-complementario">Editar</a>
+                    <form action="{% url 'producto_delete' producto.pk %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-negativo">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
+{% endblock contenidoQueCambia %}

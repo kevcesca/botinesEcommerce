@@ -1,0 +1,39 @@
+{% extends 'padre.html' %}
+
+{% block head %}
+{% load static %}
+<meta name="description" content="Editar Dirección" />
+<link href="{% static 'css/mensajesContacto.css' %}" rel="stylesheet" />
+<title>Editar Dirección</title>
+{% endblock head %}
+
+{% block contenidoQueCambia %}
+<main class="container-fluid main-edit-address">
+    <h2>Mensajes de Contáctanos</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo Electrónico</th>
+                    <th>Mensaje</th>
+                    <th>Fecha de Envío</th>
+                    <th>Leído</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mensaje in mensajes_contactanos %}
+                <tr>
+                    <td class="text-break">{{ mensaje.nombre }}</td>
+                    <td>{{ mensaje.correo }}</td>
+                    <td class="text-break">{{ mensaje.mensaje }}</td>
+                    <td class="text-break">{{ mensaje.fecha_envio }}</td>
+                    <td class="text-break">{{ mensaje.leido }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</main>
+{% endblock contenidoQueCambia %}

@@ -1,0 +1,39 @@
+{% extends 'padre.html' %}
+{% block head %}
+    {% load static %}
+    <meta name="description" content="" />
+    <link href="{% static 'css/productos.css' %}" rel="stylesheet" />
+    <title>Lista de productos</title>
+{% endblock head %}
+{% block contenidoQueCambia %}
+<main class="d-flex justify-content-center align-items-center flex-column">
+    <section class="page-section about-heading card my-5 py-5 t-white w-75 px-5">
+        <h2 class="section-heading mb-4">
+            <span class="section-heading-upper">Un Paso Firme en el Deporte</span>
+            <span class="section-heading-lower">Acerca de Botines NP</span>
+        </h2>
+        <p>Fundada en 2020, Botines NP es el resultado del sueño y la pasión por el fútbol de un grupo de apasionados del deporte. Nos dedicamos a crear los botines deportivos más avanzados y cómodos para futbolistas de todos los niveles. Nuestra búsqueda de la excelencia nos ha llevado a colaborar con expertos en biomecánica y futbolistas profesionales, y a utilizar las últimas tecnologías en nuestro diseño y producción.</p>
+        <p class="mb-0">
+            Estamos seguros de que te enamorarás de la calidad y el rendimiento de nuestros botines desde el primer momento que los lleves puestos. Únete a nosotros en tu rutina diaria, en una salida con amigos o simplemente para disfrutar de un tiempo a solas en el campo de juego.
+        </p>
+    </section>
+    <section class="card d-flex align-items-center justify-content-center flex-column t-white mb-4 py-5">
+        <img class="img-dev" src="https://res.cloudinary.com/dpsygq9p6/image/upload/v1696985129/Botines/KevinCeron.jpg" alt="Kevin Ceron">
+        <h3 class="my-2">Kevin Ceron - Desarrollador Web JR</h3>
+        <p class="mb-2">CDMX, México</p>
+        <p class="w-50 mb-4">Soy un desarrollador jr que ama tanto el back como el front, apasionado de los videojuegos y el desarrollo de software en general.</p>
+        <p>Mi información de contacto:</p>
+        <ul class="d-flex justify-content-center align-items-center flex-row">
+            <li class="mx-4"><a href="https://www.linkedin.com/in/kevinceresc/">
+                <img class="logo-about" src="https://res.cloudinary.com/dpsygq9p6/image/upload/v1696987504/Botines/linkedin.webp" alt="Linkedin">
+            </a></li>
+            <li class="mx-4"><a href="https://portafolio-kevcesca.vercel.app/">
+                <img class="logo-about" src="https://res.cloudinary.com/dpsygq9p6/image/upload/v1696988507/Botines/kevinceronlogo.png" alt="Portafolio">
+            </a></li>
+            <li class="mx-4"><a href="https://github.com/kevcesca">
+                <img class="logo-about" src="https://res.cloudinary.com/dpsygq9p6/image/upload/v1696987596/Botines/github.png" alt="GitHub">
+            </a></li>
+        </ul>
+    </section>
+</main>
+{% endblock contenidoQueCambia %}

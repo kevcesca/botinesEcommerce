@@ -1,0 +1,19 @@
+{% extends 'padre.html' %}
+
+{% block head %}
+    {% load static %}
+    <meta name="description" content="Crear Nueva Dirección" />
+    <link href="{% static 'css/crear_direccion.css' %}" rel="stylesheet" />
+    <title>Crear Nueva Dirección</title>
+{% endblock head %}
+
+{% block contenidoQueCambia %}
+<main class="container-fluid main-create-address">
+    <h1>Crear Nueva Dirección</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar Dirección</button>
+    </form>
+</main>
+{% endblock contenidoQueCambia %}

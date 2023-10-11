@@ -1,0 +1,20 @@
+{% extends 'padre.html' %}
+
+{% block head %}
+    {% load static %}
+    <meta name="description" content="Editar Perfil de Usuario" />
+    <link href="{% static 'css/editarPerfil.css' %}" rel="stylesheet" />
+    <title>Editar Perfil</title>
+{% endblock head %}
+
+{% block contenidoQueCambia %}
+<main class="container-fluid main-edit-profile d-flex justify-content-center align-items-center flex-column">
+    
+    <form class="formulario-editar card d-flex justify-content-center align-items-center flex-column w-50 py-5" method="post" data-aos="zoom-in">
+        <h1 class="t-white">Editar Perfil</h1>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-productos w-25">Guardar Cambios</button>
+    </form>
+</main>
+{% endblock contenidoQueCambia %}

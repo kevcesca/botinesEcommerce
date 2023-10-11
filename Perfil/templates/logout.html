@@ -1,0 +1,18 @@
+{% extends 'padre.html' %}
+
+{% block head %}
+{% load static %}
+<meta name="description" content="Editar Dirección" />
+<link href="{% static 'css/mensajesContacto.css' %}" rel="stylesheet" />
+<title>Editar Dirección</title>
+{% endblock head %}
+
+{% block contenidoQueCambia %}
+
+<main class="container-fluid bg-primary">
+
+    <p>Gracias por su visita! vuelva pronto</p>
+    <a href="{% url 'Inicio' %}">inicio</a>
+</main>
+
+{% endblock contenidoQueCambia %}
