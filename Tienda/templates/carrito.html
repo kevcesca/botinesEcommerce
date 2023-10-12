@@ -6,10 +6,10 @@
     <title>Carrito de Compras</title>
 {% endblock head %}
 {% block contenidoQueCambia %}
-<main class="container-fluid main-cart pt-5">
+<main class="container-fluid main-cart pt-5 t-white">
     <div class="container ">
         <h1>Tu Carrito de Compras</h1>
-        <table class="table">
+        <table class="table t-white">
             <thead>
                 <tr>
                     <th class="text-center">Imagen</th>
@@ -21,7 +21,7 @@
             </thead>
             <tbody >
                 {% for item in items %}
-                    <tr class="yellow-border my-4">
+                    <tr class="yellow-border my-5 item">
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
                                 <img src="{{ item.imagen }}" alt="{{ item.nombre }}" class="product-image">
@@ -32,12 +32,12 @@
                         <td class="pt-4"><div class="pt-4  me-4 d-flex justify-content-center align-items-center flex-row"> 
                             <form class="mx-2" method="post" action="{% url 'RestarCarrito' item.product_id %}">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-complementario btn-sm">-</button>
+                                <button type="submit" class="btn btn-complementario btn-sm px-2">-</button>
                             </form>
                                 {{ item.cantidad }}
                             <form class="mx-2" method="post" action="{% url 'SumarCarrito' item.product_id %}">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-productos btn-sm">+</button>
+                                <button type="submit" class="btn btn-productos btn-sm px-2">+</button>
                             </form>
                         </div></td>
                         <td class="pt-4"><div class="pt-4 d-flex justify-content-center align-items-center flex-column"> ${{ item.subtotal }} </div></td>

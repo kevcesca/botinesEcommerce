@@ -7,29 +7,38 @@
 {% endblock head %}
 {% block contenidoQueCambia %}
 <main>
-    <form method="get" action="{% url 'Productos' %}">
-        <select name="categoria">
-            <option value="">Todas las categorías</option>
-            {% for categoria in categorias %}
-            <option value="{{ categoria.nombre }}">{{ categoria.nombre }}</option>
-            {% endfor %}
-        </select>
+    <form method="get" action="{% url 'Productos' %}" class="d-flex justify-content-evenly align-items-center pt-5">
+        <div class="select">
+            <select name="categoria">
+                <option value="">Todas las categorías</option>
+                {% for categoria in categorias %}
+                <option value="{{ categoria.nombre }}">{{ categoria.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
 
-        <select name="talla">
-            <option value="">Todas las tallas</option>
-            {% for talla in tallas %}
-            <option value="{{ talla.numeroDeTalla }}">{{ talla.numeroDeTalla }}</option>
-            {% endfor %}
-        </select>
 
-        <select name="tipo_cliente">
-            <option value="">Todos los tipos de cliente</option>
-            {% for tipo_cliente in tipos_cliente %}
-            <option value="{{ tipo_cliente.nombre }}">{{ tipo_cliente.nombre }}</option>
-            {% endfor %}
-        </select>
+        <div class="select">
+            <select name="talla">
+                <option value="">Todas las tallas</option>
+                {% for talla in tallas %}
+                <option value="{{ talla.numeroDeTalla }}">{{ talla.numeroDeTalla }}</option>
+                {% endfor %}
+            </select>
+        </div>
 
-        <button type="submit">Filtrar</button>
+
+        <div class="select">
+            <select name="tipo_cliente">
+                <option value="">Todos los tipos de cliente</option>
+                {% for tipo_cliente in tipos_cliente %}
+                <option value="{{ tipo_cliente.nombre }}">{{ tipo_cliente.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+        <button class="btn-productos px-2 py-2" type="submit">Filtrar</button>
     </form>
 
 

@@ -14,3 +14,16 @@
     height: 45vh;
     background-size: cover;
 }
+
+.carrousel-img{
+    width: 75vw;
+    height: 70vh;
+    object-fit: cover;
+    object-position: 0 -50px;
+    filter: brightness(50%);
+}
+
+.inicio-title{
+    font-size: 10vw;
+    translate: 0 -100px;
+}

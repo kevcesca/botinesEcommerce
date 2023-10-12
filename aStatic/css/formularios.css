@@ -1,35 +1,37 @@
 main {
-    background-color: #111927;
-    background-image: 
-        radial-gradient(at 47% 33%, hsl(196.13, 53%, 51%) 0, transparent 59%), 
-        radial-gradient(at 82% 65%, hsl(88.65, 73%, 48%) 0, transparent 55%);
+	background-color: #111927;
+	background-image:
+		radial-gradient(at 47% 33%, hsl(196.13, 53%, 51%) 0, transparent 59%),
+		radial-gradient(at 82% 65%, hsl(88.65, 73%, 48%) 0, transparent 55%);
 }
 
 /* Glassmorphism card effect */
 .card {
-    backdrop-filter: blur(9px) saturate(105%);
-    -webkit-backdrop-filter: blur(9px) saturate(105%);
-    background-color: rgba(17, 25, 40, 0.61);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.125);
-    border-color: #d4ff40;
-    border-width: 2px;
+	backdrop-filter: blur(9px) saturate(105%);
+	-webkit-backdrop-filter: blur(9px) saturate(105%);
+	background-color: rgba(17, 25, 40, 0.61);
+	border-radius: 12px;
+	border: 1px solid rgba(255, 255, 255, 0.125);
+	border-color: #d4ff40;
+	border-width: 2px;
 }
 
 
-.label, #id_username, #id_password { 
-	width: 100%; 
-	margin-bottom: 10px; 
-	background: rgba(0,0,0,0.3);
+.label,
+#id_username,
+#id_password {
+	width: 100%;
+	margin-bottom: 10px;
+	background: rgba(0, 0, 0, 0.3);
 	border: none;
 	outline: none;
 	padding: 10px;
 	font-size: 13px;
 	color: #fff;
-	text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
-	border: 1px solid rgba(0,0,0,0.3);
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+	border: 1px solid rgba(0, 0, 0, 0.3);
 	border-radius: 4px;
-	box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+	box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2), 0 1px 1px rgba(255, 255, 255, 0.2);
 	-webkit-transition: box-shadow .5s ease;
 	-moz-transition: box-shadow .5s ease;
 	-o-transition: box-shadow .5s ease;
@@ -42,7 +44,8 @@ main {
 .formulario-editar input,
 .formulario-editar textarea,
 .formulario-editar select {
-    color: #b2d834; /* Cambia el color a tu preferencia */
+	color: #b2d834;
+	/* Cambia el color a tu preferencia */
 }
 
 /* Cambiar el color de los textos de los labels específicos */
@@ -52,5 +55,59 @@ main {
 .formulario-editar label[for="id_imagen"],
 .formulario-editar label[for="id_username"],
 .formulario-editar label[for="id_password"] {
-    color: #dfdfdf; /* Cambia el color a tu preferencia */
+	color: #dfdfdf;
+	/* Cambia el color a tu preferencia */
+}
+
+
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	outline: 0;
+	box-shadow: none;
+	border: 0 !important;
+	background: #5c666473;
+	background-image: none;
+	flex: 1;
+	padding: 0 .5em;
+	color: #fff;
+	cursor: pointer;
+	font-size: 1em;
+	font-family: 'Open Sans', sans-serif;
+}
+
+select::-ms-expand {
+	display: none;
+}
+
+.select {
+	position: relative;
+	display: flex;
+	width: 20em;
+	height: 3em;
+	line-height: 3;
+	background-color: rgba(17, 25, 40, 0.61);
+	overflow: hidden;
+	border-radius: .25em;
+	border: #d4ff40;
+	border-width: 1px;
+	border-style: groove;
+}
+
+.select::after {
+	content: '\25BC';
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0 1em;
+	background: #798080;
+	cursor: pointer;
+	pointer-events: none;
+	transition: .25s all ease;
+}
+
+.select:hover::after {
+	color: #23b499;
 }
