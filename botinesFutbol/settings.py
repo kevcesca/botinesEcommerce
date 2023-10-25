@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-2unt$w_oncidis0p!i=&z&#h_0hmr2wax#c&6g$*9i2-tk=d=1"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['vercel.app', '127.0.0.1']
+ALLOWED_HOSTS = ['.vercel.app','now.sh','127.0.0.1','localhost']
 
 
 # Application definition
@@ -80,13 +80,23 @@ WSGI_APPLICATION = "botinesFutbol.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': '6CafB11Ae55d+65gcA+e2156+GDBfCC2',
+        'HOST': 'viaduct.proxy.rlwy.net',
+        'PORT': '41039',
     }
 }
-
 
 # Se cambia el modelo por defecto de usuarios
 AUTH_USER_MODEL = 'Perfil.UsuarioPersonalizado'
@@ -127,6 +137,8 @@ USE_TZ = True
 
 STATIC_URL = "aStatic/"
 
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'aStatic'),
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
