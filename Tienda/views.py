@@ -3,11 +3,20 @@ from django.views import View
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 from django.db.models import Q
+from django.db import connection
+from decimal import Decimal
 from .forms import ProductoForm
 from .models import *
 from Cart.cart import Cart
+
+
+def login_redirect(request):
+    messages.info(request, 'Por favor inicia sesión para continuar.')
+    return redirect('Login')
 
 # Create your views here.
 class ProductoList(ListView):
@@ -38,8 +47,8 @@ class ProductoList(ListView):
             queryset = queryset.filter(tipoDeCliente__nombre=tipo_cliente)
 
         return queryset
-
-
+    
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categorias'] = Categoria.objects.all()
@@ -48,80 +57,10 @@ class ProductoList(ListView):
         return context
 
 
-def agregar_carrito(req):
-    if req.method == "POST":
-        product_id = req.POST.get('product_id')
-        product = Producto.objects.get(id=product_id)
-        cart = Cart(req)
-        cart.add(product)
-        
-        # Agrega un mensaje de éxito
-        messages.success(req, f"{product.nombre} agregado al carrito")
+class ProductoListView(UserPassesTestMixin, View):
+    def test_func(self):
+        return self.request.user.is_staff
 
-    # Redirige a la página ProductoList con el mensaje
-    return redirect('Productos')
-
-
-def actualizar_cantidad(request):
-    if request.method == "POST":
-        product_id = request.POST.get('product_id')
-        cantidad = int(request.POST.get('cantidad'))
-        product = Producto.objects.get(id=product_id)
-        cart = Cart(request)
-        
-        if cantidad > 0:
-            cart.update_quantity(product, cantidad)
-        else:
-            cart.remove(product)
-    
-    return redirect('Carrito')
-
-
-def ver_carrito(request):
-    cart = Cart(request)
-    items = cart.get_items()
-    total = cart.get_total()
-    return render(request, 'carrito.html', {'items': items, 'total': total})
-
-
-def realizar_pedido(request):
-    cart = Cart(request)
-    
-    # Aquí puedes procesar el pedido y la pasarela de pago
-    # Por ejemplo, si estás usando Stripe, puedes crear una sesión de pago aquí
-    
-    # Una vez que se ha realizado el pedido y el pago, puedes vaciar el carrito
-    cart.clear()
-    
-    # Redirige a una página de confirmación o de éxito del pedido
-    return redirect('pagina_de_confirmacion')
-
-
-def eliminar_del_carrito(request):
-    if request.method == "POST":
-        product_id = request.POST.get('product_id')
-        product = Producto.objects.get(id=product_id)
-        cart = Cart(request)
-        cart.remove(product)
-    
-    return redirect('Carrito')
-
-
-def sumar_al_carrito(request, product_id):
-    product = Producto.objects.get(id=product_id)
-    cart = Cart(request)
-    cart.add(product)
-    return redirect('Carrito')
-
-
-def restar_del_carrito(request, product_id):
-    product = Producto.objects.get(id=product_id)
-    cart = Cart(request)
-    cart.decrement(product)
-    return redirect('Carrito')
-
-
-class ProductoListView(View):
     template_name = 'producto_list.html'
 
     def get(self, request):
@@ -135,8 +74,9 @@ class ProductoListView(View):
         return render(request, self.template_name, {'productos': productos})
 
 
-
-class ProductoCreateView(View):
+class ProductoCreateView(UserPassesTestMixin, View):
+    def test_func(self):
+        return self.request.user.is_staff
 
     def get(self, request):
         form = ProductoForm()
@@ -151,7 +91,9 @@ class ProductoCreateView(View):
         return render(request, 'producto_form.html', {'form': form})
 
 
-class ProductoUpdateView(View):
+class ProductoUpdateView(UserPassesTestMixin, View):
+    def test_func(self):
+        return self.request.user.is_staff
     
     def get(self, request, pk):
         producto = Producto.objects.get(pk=pk)
@@ -168,7 +110,10 @@ class ProductoUpdateView(View):
         return render(request, 'producto_form.html', {'form': form, 'producto': producto})
 
 
-class ProductoDeleteView(View):
+class ProductoDeleteView(UserPassesTestMixin, View):
+    def test_func(self):
+        return self.request.user.is_staff
+
     def post(self, request, pk):
         producto = Producto.objects.get(pk=pk)
         producto.delete()
@@ -182,5 +127,5 @@ def detalle_producto(request, producto_id):
     return render(request, 'detalleProducto.html', context)
 
 
-def about(req):
-    return render(req, 'about.html')
+def about(request):
+    return render(request, 'about.html')

@@ -10,7 +10,7 @@
 {% block contenidoQueCambia %}
 <main class="container-fluid main-edit-profile d-flex justify-content-center align-items-center flex-column">
     
-    <form class="formulario-editar card d-flex justify-content-center align-items-center flex-column w-50 py-5" method="post" data-aos="zoom-in">
+    <form class="formulario-editar card d-flex justify-content-center align-items-center flex-column w-50 py-5" enctype="multipart/form-data" method="post" data-aos="zoom-in">
         <h1 class="t-white">Editar Perfil</h1>
         {% csrf_token %}
         {{ form.as_p }}

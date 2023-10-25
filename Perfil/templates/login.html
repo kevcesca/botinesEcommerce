@@ -12,10 +12,11 @@
 <main class="container-fluid d-flex justify-content-center align-items-center flex-column">
 
     
-        <form class="formulario-editar card d-flex justify-content-center align-items-center flex-column w-50 py-5" action="" method="post">{% csrf_token %} 
+        <form class="formulario-editar card d-flex justify-content-center align-items-center flex-column w-50 py-3" action="" method="post">{% csrf_token %} 
             <h2 class="t-white py-2">Inicia sesión</h2>
             {{miFormulario.as_p}}
             <button class="btn btn-productos" type="submit">Iniciar sesión</button>
+            <p class="t-white mt-5">Cree una cuenta <a href="{% url 'Register' %}">aquí</a></p>
         </form>
 
 </main>

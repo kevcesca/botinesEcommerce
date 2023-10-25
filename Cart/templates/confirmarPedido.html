@@ -1,0 +1,25 @@
+{% extends 'padre.html' %}
+{% block head %}
+    {% load static %}
+    <meta name="description" content="Confirmar Pedido" />
+    <link href="{% static 'css/confirmarPedido.css' %}" rel="stylesheet" />
+    <title>Confirmar Pedido</title>
+{% endblock head %}
+{% block contenidoQueCambia %}
+<main class="container-fluid main-cart pt-5 t-white">
+    <div class="container ">
+        <h1>Confirmar Pedido</h1>
+        <p>Total de la compra: ${{ total }}</p>
+        <h3>Selecciona una dirección de envío:</h3>
+        <ul>
+            {% for direccion in direcciones %}
+                <li>{{ direccion }}</li>
+                <a href="{% url 'EditarDireccion' direccion.id %}">Editar</a>
+                <a href="{% url 'RealizarPedido' direccion.id %}" class="btn btn-productos">Siguiente</a>
+            {% endfor %}
+        </ul>
+        <p>O bien, crea una nueva dirección:</p>
+        <a href="{% url 'CrearDireccion' %}">Nueva dirección</a>
+    </div>
+</main>
+{% endblock contenidoQueCambia %}

@@ -29,7 +29,7 @@ class Producto(models.Model):
     imagen2 = models.ImageField(upload_to='productos', blank=True, null=True, default='productos/default.png', verbose_name="Imagen 2 del producto")
     imagen3 = models.ImageField(upload_to='productos', blank=True, null=True, default='productos/default.png', verbose_name="Imagen 3 del producto")
     precio = models.PositiveIntegerField(verbose_name="Precio")
-    precioDescuento = models.PositiveIntegerField(verbose_name="Precio con descuento")
+    precioDescuento = models.PositiveIntegerField(verbose_name="Precio con descuento", blank=True, null=True)
     descripcion = models.TextField(max_length=500, verbose_name="Descripción")
     cantidad = models.PositiveIntegerField(verbose_name="Cantidad")
     disponible = models.BooleanField(default=True, verbose_name="Disponible")
@@ -40,34 +40,34 @@ class Producto(models.Model):
     def __str__(self):
         return f"({self.nombre})"
 
-class Compra(models.Model):
+
+class Pedido(models.Model):
     STATUS_CHOICES = (
         ('Entregado', 'Entregado'),
         ('En Camino', 'En Camino'),
         ('Cancelado', 'Cancelado'),
     )
     
+    id = models.AutoField(primary_key=True) 
     cliente = models.ForeignKey(UsuarioPersonalizado, on_delete=models.CASCADE, verbose_name="Cliente")
-    productos = models.ManyToManyField('Producto', related_name='compras', verbose_name="Productos")
+    productos = models.ManyToManyField(Producto, related_name='pedidos', verbose_name="Productos")
     monto_total = models.PositiveIntegerField(verbose_name="Monto Total")
     fecha = models.DateField(default=timezone.now, verbose_name="Fecha")
     direccion = models.ForeignKey(Direccion, on_delete=models.CASCADE, verbose_name="Dirección")
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, verbose_name="Estado")
     referencia = models.CharField(max_length=50, unique=True, verbose_name="Referencia")
-    
-    # Metodos
+
     def save(self, *args, **kwargs):
         # Calcula el monto total sumando los precios de los productos
-        self.monto_total = sum(producto.precio for producto in self.productos.all())
-        super(Compra, self).save(*args, **kwargs)
+        super(Pedido, self).save(*args, **kwargs)
     
     def generar_referencia_unica(self):
         # Genera una referencia única utilizando uuid4
-        unique_id = str(uuid.uuid4().hex[:10])  # Puedes ajustar la longitud de la referencia según tus necesidades
+        unique_id = str(uuid.uuid4())[:10]  # Puedes ajustar la longitud de la referencia según tus necesidades
         self.referencia = unique_id
     
     def __str__(self):
-        return f"Compra de {self.cliente.username} - Referencia: {self.referencia}"
+        return f"Pedido de {self.cliente.username} - Referencia: {self.referencia}"
 
 
 class ItemCarrito(models.Model):

@@ -10,13 +10,16 @@
 {% block contenidoQueCambia %}
 <main class="container-fluid d-flex justify-content-center align-items-center flex-column">
     
-    <form class="d-flex justify-content-center align-items-center flex-column card t-white w-50 py-3" method="post">
+    <form class="d-flex justify-content-center align-items-stretch flex-column card t-white w-50 px-5 py-3 mt-5" method="post">
         <h2 class="t-white mb-4">Contactanos</h2>
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-productos">Enviar Mensaje</button>
     </form>
 
+    
+    {% if user.is_superuser %}
     <a class="nav-link t-black btn-productos w-50 my-5 text-center" aria-current="page" href="{% url 'MensajesContactanos' %}">Mensajes recibidos</a>
+    {% endif %}
 </main>
 {% endblock contenidoQueCambia %}

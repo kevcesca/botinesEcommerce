@@ -8,11 +8,11 @@
 {% endblock head %}
 
 {% block contenidoQueCambia %}
-<main class="container-fluid main-edit-address">
+<main class="container-fluid main-edit-address t-white">
     <h2>Mensajes de Contáctanos</h2>
-    <div class="table-responsive">
+    <div class="table-responsive card">
         <table class="table table-striped">
-            <thead>
+            <thead class="t-white">
                 <tr>
                     <th>Nombre</th>
                     <th>Correo Electrónico</th>
@@ -21,14 +21,14 @@
                     <th>Leído</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class=" t-white">
                 {% for mensaje in mensajes_contactanos %}
-                <tr>
-                    <td class="text-break">{{ mensaje.nombre }}</td>
-                    <td>{{ mensaje.correo }}</td>
-                    <td class="text-break">{{ mensaje.mensaje }}</td>
-                    <td class="text-break">{{ mensaje.fecha_envio }}</td>
-                    <td class="text-break">{{ mensaje.leido }}</td>
+                <tr class="t-white">
+                    <td class="text-break"><p class="t-white">{{ mensaje.nombre }}</p></td>
+                    <td><p class="t-white">{{ mensaje.correo }}</p></td>
+                    <td class="text-break"><p class="t-white">{{ mensaje.mensaje }}</p></td>
+                    <td class="text-break"><p class="t-white">{{ mensaje.fecha_envio }}</p></td>
+                    <td class="text-break"><p class="t-white">{{ mensaje.leido }}</p></td>
                 </tr>
                 {% endfor %}
             </tbody>

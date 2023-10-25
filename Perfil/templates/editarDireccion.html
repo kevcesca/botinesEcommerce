@@ -8,12 +8,12 @@
 {% endblock head %}
 
 {% block contenidoQueCambia %}
-<main class="container-fluid main-edit-address">
+<main class="container-fluid main-edit-address t-white py-3 px-5 ">
     <h1>Editar Dirección</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <button type="submit" class="btn btn-productos">Guardar Cambios</button>
     </form>
 </main>
 {% endblock contenidoQueCambia %}

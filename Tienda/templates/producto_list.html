@@ -8,40 +8,40 @@
 {% endblock head %}
 
 {% block contenidoQueCambia %}
-<main class="container-fluid main-profile">
-    <h2>Lista de Productos</h2>
-    <a href="{% url 'producto_create' %}" class="btn btn-productos">Crear Producto</a>
+<main class="container-fluid main-profile t-white">
+    <h2 class="t-white pt-3">Lista de Productos</h2>
+    <a href="{% url 'producto_create' %}" class="btn btn-productos t-white">Crear Producto</a>
 
-    <form method="get" action="{% url 'ListaProductos' %}" class="mt-3">
+    <form method="get" action="{% url 'ListaProductos' %}" class="mt-3 t-white">
         <div class="input-group mb-3">
             <input type="text" name="q" class="form-control" placeholder="Buscar por nombre o descripción" value="{{ request.GET.q }}">
             <button class="btn btn-complementario" type="submit">Buscar</button>
         </div>
     </form>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Precio</th>
-                <th>Imagenes</th>
-                <th>Acciones</th>
+    <table class="table table-striped t-white card  my-4">
+        <thead class="t-white">
+            <tr class="t-white d-flex justify-content-between align-items-center">
+                <th class="me-5">Nombre</th>
+                <th class="me-1">Descripcion</th>
+                <th class="me-10">Precio</th>
+                <th class="me-10">Imagenes</th>
+                <th class="me-10">Acciones</th>
                 
             </tr>
         </thead>
-        <tbody>
+        <tbody class="t-white">
             {% for producto in productos %}
-            <tr>
-                <td>{{ producto.nombre }}</td>
-                <td class="w-25">{{producto.descripcion}}</td>
-                <td>{{ producto.precio }}</td>
+            <tr class="t-white">
+                <td class="t-white"><p class="t-white">{{ producto.nombre }}</p> </td>
+                <td class="w-25 t-white"><p class="t-white">{{producto.descripcion}}</p> </td>
+                <td class="t-white px-2 mx-2"><p class="t-white">$ {{ producto.precio }}</p> </td>
                 <td>
                     <img class="image-edit mx-2 my-2" src="{{producto.imagen1.url}}" alt="{{producto.nombre}}">
                     <img class="image-edit mx-2 my-2" src="{{producto.imagen2.url}}" alt="{{producto.nombre}}">
                     <img class="image-edit mx-2 my-2" src="{{producto.imagen3.url}}" alt="{{producto.nombre}}">
                 </td>
-                <td>
+                <td class="t-white">
                     <a href="{% url 'producto_update' producto.pk %}" class="btn btn-complementario">Editar</a>
                     <form action="{% url 'producto_delete' producto.pk %}" method="post" style="display: inline;">
                         {% csrf_token %}

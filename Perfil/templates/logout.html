@@ -9,10 +9,19 @@
 
 {% block contenidoQueCambia %}
 
-<main class="container-fluid bg-primary">
-
-    <p>Gracias por su visita! vuelva pronto</p>
-    <a href="{% url 'Inicio' %}">inicio</a>
+<main class="container-fluid d-flex justify-content-center align-items-center">
+    <div class="card p-5">
+        <h2 class="t-white">Gracias por su visita! vuelva pronto</h2>
+    </div>
+    
 </main>
+
+<script>
+    setTimeout(function () {
+        window.location.href = "{% url 'Inicio' %}";
+    }, 1000);
+</script>
+
+
 
 {% endblock contenidoQueCambia %}

@@ -8,8 +8,16 @@
 {% endblock head %}
 
 {% block contenidoQueCambia %}
-<main class="container-fluid main-profile">
-    <h2>Gracias por tu mensaje</h2>
-    <p>Hemos recibido tu mensaje y te responderemos pronto.</p>
+<main class="container-fluid  d-flex justify-content-center align-items-center">
+    <div class="card t-white p-5">
+        <h2>Gracias por tu mensaje</h2>
+        <p>Hemos recibido tu mensaje y te responderemos pronto.</p>
+    </div>
 </main>
+
+<script>
+    setTimeout(function () {
+        window.location.href = "{% url 'Inicio' %}";
+    }, 2000);
+</script>
 {% endblock contenidoQueCambia %}

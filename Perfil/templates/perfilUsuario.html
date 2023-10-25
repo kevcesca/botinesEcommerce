@@ -10,17 +10,16 @@
 {% block contenidoQueCambia %}
 <main class="container-fluid main-profile d-flex justify-content-center align-items-center flex-column">
 
-    <div class="card d-flex justify-content-center align-items-center flex-column t-white w-50">
+    <div class="card d-flex justify-content-center align-items-center flex-column t-white w-50 my-5">
         <h1 class="my-5">Perfil de {{ user.username }}</h1>
         <img class="img-usuario" src="{{ user.imagen.url }}" alt="Avatar">
-
+        <a href="{% url 'PedidosUsuario' %}" class="btn btn-complementario my-2">Mis pedidos</a>
         <h2 class="my-3">Datos del Usuario:</h2>
         <ul class="my-1">
             <li class="my-1">Nombre: {{ user.first_name }} {{ user.last_name }}</li>
             <li class="my-1">Email: {{ user.email }}</li>
             <li class="my-1">Activo: {% if user.activo %}Sí{% else %}No{% endif %}</li>
         </ul>
-
         <a href="{% url 'Editar' %}" class="btn btn-productos my-2">Editar Perfil</a>
         <a href="{% url 'CambiarPW' %}" class="btn btn-productos my-2">Cambiar Contraseña</a>
 
@@ -29,10 +28,11 @@
             {% for direccion in direcciones %}
             <li>
                 {{ direccion }}
-                <a href="{% url 'EditarDireccion' direccion.id %}" class="btn btn-productos my-2">Editar Dirección</a>
+                <a href="{% url 'EditarDireccion' direccion.id %}" class="btn btn-complementario my-2">Editar Dirección</a>
             </li>
             {% endfor %}
         </ul>
+        <a href="{% url 'CrearDireccion' %}" class="btn btn-productos my-2">Nueva dirección</a>
     </div>
 </main>
 {% endblock contenidoQueCambia %}

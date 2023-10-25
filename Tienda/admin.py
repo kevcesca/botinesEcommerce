@@ -14,7 +14,7 @@ admin.site.register(TipoDeCliente)
 admin.site.register(Categoria)
 admin.site.register(Talla, TallaAdmin)
 admin.site.register(Producto, ProductoAdmin)
-admin.site.register(Compra)
+admin.site.register(Pedido)
 
 
 

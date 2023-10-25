@@ -1,0 +1,64 @@
+{% extends 'padre.html' %}
+{% block head %}
+    {% load static %}
+    <meta name="description" content="Carrito de compras" />
+    <link href="{% static 'css/carrito.css' %}" rel="stylesheet" />
+    <title>Carrito de Compras</title>
+{% endblock head %}
+{% block contenidoQueCambia %}
+<main class="container-fluid main-cart pt-5 t-white">
+    <div class="container card">
+        {% if cantidad_total_productos > 0 %}
+        <h1>Tu Carrito de Compras</h1>
+        <table class="table t-white">
+            <thead>
+                <tr>
+                    <th class="text-center">Imagen</th>
+                    <th class="text-center">Producto</th>
+                    <th class="text-center">Precio</th>
+                    <th class="text-center">Cantidad</th>
+                    <th class="text-center">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr class=" my-5 item">
+                        <td>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <img src="{{ item.imagen }}" alt="{{ item.nombre }}" class="image-edit">
+                            </div>
+                        </td>
+                        <td class="pt-4"><div class="pt-4 d-flex justify-content-center align-items-center flex-column "> {{ item.nombre }} </div></td>
+                        
+                        {% if item.precioDescuento %}
+                        <td class="pt-4"><div class="pt-4 d-flex justify-content-center align-items-center flex-column "> ${{ item.precioDescuento }} </div></td>
+                        {% else %}
+                        <td class="pt-4"><div class="pt-4 d-flex justify-content-center align-items-center flex-column "> ${{ item.precio }} </div></td>
+                        {% endif %}
+                        <td class="pt-4"><div class="pt-4  me-4 d-flex justify-content-center align-items-center flex-row"> 
+                            <form class="mx-2" method="post" action="{% url 'RestarCarrito' item.product_id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-complementario btn-sm px-2">-</button>
+                            </form>
+                                {{ item.cantidad }}
+                            <form class="mx-2" method="post" action="{% url 'SumarCarrito' item.product_id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-productos btn-sm px-2">+</button>
+                            </form>
+                        </div></td>
+                        <td class="pt-4"><div class="pt-4 d-flex justify-content-center align-items-center flex-column"> ${{ item.subtotal }} </div></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p>Total: ${{ total }}</p>
+        <a href="{% url 'ConfirmarPedido' %}" class="btn btn-productos my-4">Realizar Pedido</a>
+        {% else %}
+        <div class="d-flex justify-content-center align-items-center flex-column p-5 align-items-center">
+            <h2 class="t-white">Carrito vacio</h2>
+            <a class="t-white" href="{% url 'Productos' %}">Agrega productos</a>
+        </div>
+        {% endif %}
+    </div>
+</main>
+{% endblock contenidoQueCambia %}

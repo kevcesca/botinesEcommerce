@@ -11,6 +11,7 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from .models import *
 from .forms import *
+from Tienda.models import Pedido
 
 # Create your views here.
 
@@ -42,7 +43,25 @@ def loginView(req):
         return render(req, "login.html", {"miFormulario": miFormulario})
 
 
-class PerfilUsuarioView(DetailView):
+def registerView(request):
+    if request.method == 'POST':
+        form = FormularioRegistroUsuarioPersonalizado(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            messages.success(request, f"Bienvenido {username}. Tu cuenta ha sido creada exitosamente.")
+            return redirect('Inicio')
+        else:
+            messages.error(request, 'Ha ocurrido un error al crear tu cuenta. Por favor, intenta de nuevo.')
+    else:
+        form = FormularioRegistroUsuarioPersonalizado()
+    return render(request, 'register.html', {'form': form})
+
+
+class PerfilUsuarioView(LoginRequiredMixin, DetailView):
     model = UsuarioPersonalizado
     template_name = 'perfilUsuario.html'  
 
@@ -59,7 +78,7 @@ class PerfilUsuarioView(DetailView):
 @login_required
 def editar_perfil(request):
     if request.method == 'POST':
-        form = UserEditForm(request.POST, instance=request.user)
+        form = UserEditForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
             messages.success(request, 'Tu perfil ha sido actualizado correctamente.')
@@ -126,6 +145,13 @@ def cambiar_password(request):
     return render(request, 'cambiarPassword.html', {'form': form})
 
 
+@login_required
+def pedidos_usuario(request):
+    usuario = request.user
+    pedidos = Pedido.objects.filter(cliente=usuario)
+    return render(request, 'pedidosUsuario.html', {'pedidos': pedidos})
+
+
 def contactanos(request):
     if request.method == 'POST':
         form = MensajeContactoForm(request.POST)
@@ -145,6 +171,7 @@ def contactanosGracias(request):
     return render(request, 'contactanos2.html')
 
 
+@staff_member_required
 def mensajesContactanos(request):
     mensajes_contactanos = MensajeContacto.objects.all()
     return render(request, 'mensajesContacto.html', {'mensajes_contactanos': mensajes_contactanos})

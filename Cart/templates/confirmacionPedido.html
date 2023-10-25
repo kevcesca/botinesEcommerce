@@ -1,0 +1,43 @@
+{% extends 'padre.html' %}
+{% block head %}
+    {% load static %}
+    <meta name="description" content="Confirmación de Pedido" />
+    <link href="{% static 'css/confirmacionPedido.css' %}" rel="stylesheet" />
+    <title>Confirmación de Pedido</title>
+{% endblock head %}
+
+{% block contenidoQueCambia %}
+
+<main class="container-fluid d-flex justify-content-center align-items-center">
+    <div class="card t-white w-75 my-5 py-5 px-5 d-flex justify-content-center align-items-center flex-column">
+        <h2>¡Gracias por su pedido!</h2>
+        <p>Su pedido ha sido procesado exitosamente.</p>
+        <p>El ID de su pedido es: {{ pedido.id }}</p>
+        <p>Detalles del Pedido:</p>
+        <table class="table t-white ">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Imagen</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in pedido.productos.all %}
+                    <tr>
+                        <td>{{ producto.nombre }}</td>
+                        <td>${{ producto.precio }}</td>
+                        <td><a href="{% url 'DetalleProducto' producto.id %}"><img class="image-edit" src="{{ producto.imagen1.url }}" alt="{{ producto.nombre }}"></a></td>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p>Monto Total: ${{ pedido.monto_total }}</p>
+        <p>Fecha: {{ pedido.fecha }}</p>
+        <p>Dirección de Envío: {{ pedido.direccion }}</p>
+        <p>Estado: {{ pedido.status }}</p>
+        <p>Referencia: {{ pedido.referencia }}</p>
+        <p>¡Esperamos que disfrute de su compra y vuelva pronto!</p>
+    </div>
+</main>
+
+{% endblock contenidoQueCambia %}

@@ -32,20 +32,22 @@
                             
                     </ul>
                 </li>
-
-                <li class="nav-item dropdown d-flex">
-                    <a class="nav-link dropdown-toggle t-black" href="{% url 'Productos' %}" id="navbarDropdown"
-                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Perfil
-                    </a>
-                    
                     {% if user.is_authenticated %}
+                    <li class="nav-item dropdown d-flex">
+                        <a class="nav-link dropdown-toggle t-black" href="{% url 'Productos' %}" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Perfil
+                        </a>
                         <ul class="dropdown-menu t-black" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{% url 'Perfil' %}">Mi perfil</a></li>
                             <li><a class="dropdown-item" href="{% url 'Editar' %}">Editar perfil</a></li>
                         </ul>
+                    </li>
+                    {% else %}
+                    <li class="nav-item ">
+                        <a class="nav-link t-black text-nowrap" aria-current="page" href="{% url 'Login' %}">Perfil</a>
+                    </li>
                     {% endif %}
-                </li>
 
                 <li class="nav-item mx-4">
                     <form class="d-flex" method="get" action="{% url 'Productos' %}">
@@ -72,10 +74,9 @@
                 {% endif %}
             </div>
 
-            <a class=" d-flex mx-4" href="{% url 'Carrito' %}">
-                <img class=" cart-icon"
-                    src="https://res.cloudinary.com/dpsygq9p6/image/upload/v1696291297/Botines/carrito.png"
-                    alt="Carrito">
+            <a class="d-flex mx-4" href="{% url 'Carrito' %}">
+                <img class="cart-icon" src="https://res.cloudinary.com/dpsygq9p6/image/upload/v1696291297/Botines/carrito.png" alt="Carrito">
+                <span class="cart-number">{{ cantidad_total_productos }}</span>
             </a>
 
             

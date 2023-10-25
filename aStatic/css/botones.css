@@ -1,0 +1,99 @@
+/* Botones */
+
+.btn-productos {
+	background-color: #d4ff40;
+	color:#000000;
+    border-radius: 10px;
+}
+.btn-productos:hover,
+.btn-productos:focus,
+.btn-productos:active,
+.btn-productos.active {
+	background-color: #c4ef30;
+	border-color: #acd718;
+	color:#000000;
+    box-shadow: none;
+    
+}
+.btn-productos.disabled:hover,
+.btn-productos.disabled:focus,
+.btn-productos.disabled:active,
+.btn-productos.disabled.active,
+.btn-productos[disabled]:hover,
+.btn-productos[disabled]:focus,
+.btn-productos[disabled]:active,
+.btn-productos[disabled].active,
+fieldset[disabled] .btn-productos:hover,
+fieldset[disabled] .btn-productos:focus,
+fieldset[disabled] .btn-productos:active,
+fieldset[disabled] .btn-productos.active {
+	background-color: #d4ff40;
+	border-color: #c7f233;
+	color:#000000;
+}
+
+
+.btn-negativo {
+	background-color: #7b09b3;
+	border-color: #6e00a6;
+	color:#FFFFFF;
+    border-radius: 10px;
+}
+.btn-negativo:hover,
+.btn-negativo:focus,
+.btn-negativo:active,
+.btn-negativo.active {
+	background-color: #6b00a3;
+	border-color: #53008b;
+	color:#FFFFFF;
+    box-shadow: none;
+}
+.btn-negativo.disabled:hover,
+.btn-negativo.disabled:focus,
+.btn-negativo.disabled:active,
+.btn-negativo.disabled.active,
+.btn-negativo[disabled]:hover,
+.btn-negativo[disabled]:focus,
+.btn-negativo[disabled]:active,
+.btn-negativo[disabled].active,
+fieldset[disabled] .btn-negativo:hover,
+fieldset[disabled] .btn-negativo:focus,
+fieldset[disabled] .btn-negativo:active,
+fieldset[disabled] .btn-negativo.active {
+	background-color: #7b09b3;
+	border-color: #6e00a6;
+	color:#FFFFFF;
+}
+
+
+.btn-complementario {
+	background-color: #8fb31b;
+	border-color: #8fb31b;
+	color:#FFFFFF;
+    border-radius: 10px;
+}
+.btn-complementario:hover,
+.btn-complementario:focus,
+.btn-complementario:active,
+.btn-complementario.active {
+	background-color: #7fa30b;
+	border-color: #678b00;
+	color:#FFFFFF;
+    box-shadow: none;
+}
+.btn-complementario.disabled:hover,
+.btn-complementario.disabled:focus,
+.btn-complementario.disabled:active,
+.btn-complementario.disabled.active,
+.btn-complementario[disabled]:hover,
+.btn-complementario[disabled]:focus,
+.btn-complementario[disabled]:active,
+.btn-complementario[disabled].active,
+fieldset[disabled] .btn-complementario:hover,
+fieldset[disabled] .btn-complementario:focus,
+fieldset[disabled] .btn-complementario:active,
+fieldset[disabled] .btn-complementario.active {
+	background-color: #8fb31b;
+	border-color: #82a60e;
+	color:#FFFFFF;
+}

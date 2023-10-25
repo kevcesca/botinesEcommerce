@@ -45,27 +45,36 @@
     <div class="container mt-5">
         <div class="row d-flex justify-content-between align-items-center flex-row flex-wrap">
             {% for producto in productos %}
+
+            {% if producto.disponible %}
             <div class="col-md-4 col-12 my-4 d-flex justify-content-center align-items-center" data-aos="fade-up">
                 <div class="card product-card yellow-border">
                     <a href="{% url 'DetalleProducto' producto.id %}">
                         <div class="image-box">
                             <img src="{{producto.imagen1.url}}" class="card-img-top" alt="{{producto.nombre}}">
                         </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title t-white">{{producto.nombre}}</h5>
+                            <p class="card-text product-description t-white">
+                                {{producto.descripcion}}
+                            </p>
+                            {% if producto.precioDescuento %}
+                                <span class="t-white card-text text-decoration-line-through">${{ producto.precio }}</span>
+                                <span class="t-white card-text ">${{ producto.precioDescuento }}</span>
+                            {% else %}
+                                <span class="t-white card-text ">${{ producto.precio }}</span>
+                            {% endif %}
+                            <form method="post" action="{% url 'AgregarCarrito' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="product_id" value="{{ producto.id }}">
+                            </form>
+                        </div>
                     </a>
-                    <div class="card-body">
-                        <h5 class="card-title t-white">{{producto.nombre}}</h5>
-                        <p class="card-text product-description t-white">
-                            {{producto.descripcion}}
-                        </p>
-                        <p class="card-text t-white">Precio: {{producto.precio}}</p>
-                        <form method="post" action="{% url 'AgregarCarrito' %}">
-                            {% csrf_token %}
-                            <input type="hidden" name="product_id" value="{{ producto.id }}">
-                            <button type="submit" class="btn btn-productos ">Agregar al carrito</button>
-                        </form>
-                    </div>
                 </div>
             </div>
+            {% endif %}
+
             {% endfor %}
         </div>
     </div>

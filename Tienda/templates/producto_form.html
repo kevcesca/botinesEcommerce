@@ -8,17 +8,22 @@
 {% endblock head %}
 
 {% block contenidoQueCambia %}
-<main class="container-fluid main-profile">
+<main class="container-fluid main-profile t-white d-flex justify-content-center align-items-center flex-column">
     <h2>{% if producto %}Editar Producto{% else %}Crear Producto{% endif %}</h2>
-    <img class="image-edit mx-2 my-2" src="{{producto.imagen1.url}}" alt="{{producto.nombre}}">
-    <img class="image-edit mx-2 my-2" src="{{producto.imagen2.url}}" alt="{{producto.nombre}}">
-    <img class="image-edit mx-2 my-2" src="{{producto.imagen3.url}}" alt="{{producto.nombre}}">
 
-    <form method="post" enctype="multipart/form-data">
+    <form class="card d-flex py-4 px-5 w-75 justify-content-center align-items-stretch flex-column" method="post" enctype="multipart/form-data">
+        
+        {% if producto %}
+            <div class="d-flex justify-content-evenly">
+                <img class="image-edit mx-2 my-2" src="{{producto.imagen1.url}}" alt="{{producto.nombre}}">
+                <img class="image-edit mx-2 my-2" src="{{producto.imagen2.url}}" alt="{{producto.nombre}}">
+                <img class="image-edit mx-2 my-2" src="{{producto.imagen3.url}}" alt="{{producto.nombre}}">
+            </div>
+        {% endif %}
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-productos">Guardar</button>
     </form>
-    <a href="{% url 'ListaProductos' %}" class="btn btn-secondary">Volver a la lista</a>
+    <a href="{% url 'ListaProductos' %}" class="btn btn-complementario my-2">Volver a la lista</a>
 </main>
 {% endblock contenidoQueCambia %}

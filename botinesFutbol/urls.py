@@ -18,12 +18,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 from botinesFutbol.views import *
+from Perfil.views import loginView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('accounts/login/', loginView, name='Login'),
     path("tienda/", include("Tienda.urls")),
     path("perfil/", include("Perfil.urls")),
+    path("carrito/", include("Cart.urls")),
     path("", inicio, name="Inicio"),
 ]
 
